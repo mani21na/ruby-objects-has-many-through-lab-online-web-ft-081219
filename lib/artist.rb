@@ -1,7 +1,7 @@
 require 'pry'
 
 class Artist
-  attr_accessor :name, :artist
+  attr_accessor :name
 
   @@all = []
 
@@ -16,6 +16,7 @@ class Artist
 
   def songs
     Song.all.select{|song| song.artist == self}
+    Song.all.select { |song| song.artist == self }
     binding.pry
   end
 
@@ -27,7 +28,3 @@ class Artist
     self.songs.each{|song| song.genre}
   end
 end
-
-jay_z = Artist.new("Jay-Z")
-rap = Genre.new("rap")
-ninety_nine_problems = Song.new("Ninety Nine Problems", jay_z, rap)      
