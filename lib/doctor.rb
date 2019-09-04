@@ -9,14 +9,18 @@ class Doctor
   end
 
   def appointments
-    Appointments.all.select{|aptmt| aptmt.doctor == self}
+    Appointment.all.select{|aptmt| aptmt.doctor == self}
   end
 
   def new_appointment(date, patient)
-    Appointments.new(date, patient, self)
+    Appointment.new(date, patient, self)
   end
 
   def patients
-    self.appointments.each{|aptmt| aptmt.patient}
+    appointments.map(&:patient)
+  end
+
+  def self.all
+    @@all
   end
 end
